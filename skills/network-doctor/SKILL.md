@@ -37,6 +37,8 @@ are all invisible to a speed test:
 
 ## Running it
 
+Run the collector from this skill's directory:
+
 ```bash
 bash scripts/netdoc.sh            # standard: ~3 minutes, includes throughput
 bash scripts/netdoc.sh --quick    # ~45s, skips throughput, MTU and bufferbloat
@@ -44,8 +46,12 @@ bash scripts/netdoc.sh --full     # longer rate sampling, best for intermittent 
 bash scripts/netdoc.sh --mirror https://example.com/bigfile   # pick your own test file
 ```
 
+Plain POSIX shell with no dependencies beyond what macOS ships (`curl`, `dig`,
+`python3`). No sudo, no writes, no router login. If the working directory is not
+this skill's folder, resolve `scripts/netdoc.sh` relative to this SKILL.md.
+
 macOS only for now — it leans on `system_profiler`, `networksetup` and `ipconfig`.
-It needs no sudo, writes nothing, and never touches a router admin page.
+On Linux or Windows, say so rather than running it and reporting nothing.
 
 ## Reading the output
 
@@ -85,8 +91,9 @@ Before changing a wifi channel or security mode, know that:
 - **Auto-channel neighbours move.** A block that scans empty today can have company next
   week. Re-run the diagnosis periodically rather than treating a channel choice as final.
 
-See `references/` for the deeper notes on channel planning, DNS chains, and tunnelled WAN
-links.
+Read `references/channels.md` before recommending a channel change, and
+`references/dns.md` before touching a resolver list. They carry the reasoning the
+report only summarises.
 
 ## Scope
 

@@ -3,7 +3,11 @@
 Find out **why** your home network is slow — with evidence — and get a ranked list of what
 to change. Read-only: it measures and recommends, it never touches a setting.
 
-Works as a [Claude Code](https://claude.com/claude-code) skill or as a plain shell script.
+An [agent skill](https://skills.sh) that works with **Claude Code, Cursor, Codex, Copilot,
+OpenCode, Windsurf, Gemini, Cline, Zed** and 60+ other agents — or as a plain shell script
+with no agent at all.
+
+[![skills.sh](https://skills.sh/b/KenTaniguchi-R/network-doctor)](https://skills.sh/KenTaniguchi-R/network-doctor)
 
 ```
 $ bash scripts/netdoc.sh
@@ -57,18 +61,29 @@ hours tuning wifi that was never the bottleneck.
 
 ## Install
 
-As a Claude Code skill:
+One command, any supported agent:
 
 ```bash
-git clone https://github.com/KenTaniguchi-R/network-doctor ~/.claude/skills/network-doctor
+npx skills add KenTaniguchi-R/network-doctor
 ```
 
-Then just ask: *"why is my wifi slow?"*
-
-Or standalone:
+That detects which agents you have installed and offers to add it to each. To target
+specific ones, or install globally rather than per-project:
 
 ```bash
-git clone https://github.com/KenTaniguchi-R/network-doctor && cd network-doctor
+npx skills add KenTaniguchi-R/network-doctor -a claude-code -a cursor -a codex
+npx skills add KenTaniguchi-R/network-doctor -g -y
+```
+
+Then just ask your agent: *"why is my wifi slow?"*
+
+### Without an agent
+
+It is an ordinary shell script and works fine on its own:
+
+```bash
+git clone https://github.com/KenTaniguchi-R/network-doctor
+cd network-doctor/skills/network-doctor
 bash scripts/netdoc.sh
 ```
 
@@ -108,6 +123,15 @@ Common here and worth recognising:
   non-DFS 80MHz block, which is exactly why it is always crowded.
 - Buffalo, NEC and ELECOM routers commonly ship with **WPA/WPA2 mixed mode**, which keeps
   broken TKIP alive. Many also ship with **WPS enabled and its PIN printed on the case**.
+
+## Contributing
+
+The analysis logic is portable; only the collection layer is macOS-specific. A Linux port
+would swap `system_profiler` for `iw`/`nmcli` and `networksetup` for `resolvectl`. The
+findings engine, thresholds and reference docs carry over unchanged.
+
+Issues and PRs welcome — especially real-world findings the tool missed, or false
+positives it produced.
 
 ## License
 
