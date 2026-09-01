@@ -60,7 +60,7 @@ hours tuning wifi that was never the bottleneck.
 As a Claude Code skill:
 
 ```bash
-git clone https://github.com/YOURNAME/network-doctor ~/.claude/skills/network-doctor
+git clone https://github.com/KenTaniguchi-R/network-doctor ~/.claude/skills/network-doctor
 ```
 
 Then just ask: *"why is my wifi slow?"*
@@ -68,7 +68,7 @@ Then just ask: *"why is my wifi slow?"*
 Or standalone:
 
 ```bash
-git clone https://github.com/YOURNAME/network-doctor && cd network-doctor
+git clone https://github.com/KenTaniguchi-R/network-doctor && cd network-doctor
 bash scripts/netdoc.sh
 ```
 
